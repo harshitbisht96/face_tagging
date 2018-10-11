@@ -19,8 +19,12 @@ cap = cv2.VideoCapture(0)
 while(True):
     # Capture frame-by-frame
     ret, frame = cap.read()
-    img =cv2.imread("./tet-11.jpeg")
-
+    img =cv2.imread("./image.jpg")
+    scale =20
+    width =int(img.shape[1]*scale/100)
+    height =int(img.shape[1]*scale/100)
+    dim =(width,height)
+    img=cv2.resize(img,dim,interpolation=cv2.INTER_AREA)
     gray  = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.5, minNeighbors=5)
     for (x, y, w, h) in faces:
